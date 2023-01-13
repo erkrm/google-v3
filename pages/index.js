@@ -16,7 +16,7 @@ export default function Home() {
 
     const term = searchInputRef.current.value;
     if (!term.trim()) return;
-    router.push(`/search?term=${term.trim()}`);
+    router.push(`/search?term=${term.trim()}&searchType=`);
   }
   return (
     <>
@@ -36,7 +36,6 @@ export default function Home() {
           alt="logo"
           width="300"
           height="100"
-          objectFit="cover"
         />
         <div className="flex w-full mt-5 mx-auto max-w-[90%] border border-gray-200 hover:shadow-lg focus-within:shadow-lg px-5 py-3 rounded-full items-center sm:max-w-xl lg:max-w-2xl">
           <SearchIcon className="h-5 text-gray-500 mr-3" />
