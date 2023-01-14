@@ -4,6 +4,7 @@ import SearchHeader from '../components/SearchHeader';
 import Response from '../Response';
 import SearchResult from '../components/SearchResult';
 import { useRouter } from 'next/router';
+import ImageResult from '../components/ImageResult';
 
 export default function search({ results }) {
   console.log(results);
@@ -20,14 +21,18 @@ export default function search({ results }) {
       <SearchHeader />
 
       {/** SEARCH RESULT */}
-
-      <SearchResult results={results} />
+      {router.query.searchType === 'image' ? (
+        <ImageResult results={results} />
+      ) : (
+        <SearchResult results={results} />
+      )}
     </div>
   );
 }
 
 export async function getServerSideProps(context) {
-  const mockData = true;
+  const startIndex = context.query.start || '1';
+  const mockData = false;
   const data = mockData
     ? Response
     : await fetch(`
@@ -35,7 +40,7 @@ export async function getServerSideProps(context) {
         process.env.CONTEXT_KEY
       }&q=${context.query.term}${
         context.query.searchType && '&searchType=image'
-      }`).then((response) => response.json());
+      }&start=${startIndex}`).then((response) => response.json());
 
   return {
     props: {

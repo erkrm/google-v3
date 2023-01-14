@@ -6,7 +6,7 @@ export default function SearchHeaderOption({ title, Icon, selected }) {
   function selectTab(title) {
     router.push(
       `/search?term=${router.query.term}&searchType=${
-        title === 'images' ? 'image' : ''
+        title === 'Images' ? 'image' : ''
       }`
     );
   }
