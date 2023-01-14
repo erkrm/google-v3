@@ -6,7 +6,7 @@ import SearchResult from '../components/SearchResult';
 import { useRouter } from 'next/router';
 import ImageResult from '../components/ImageResult';
 
-export default function search({ results }) {
+export default function Search({ results }) {
   console.log(results);
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const router = useRouter();
