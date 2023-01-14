@@ -2,20 +2,26 @@ import Head from 'next/head';
 import React from 'react';
 import SearchHeader from '../components/SearchHeader';
 import Response from '../Response';
+import SearchResult from '../components/SearchResult';
+import { useRouter } from 'next/router';
 
 export default function search({ results }) {
   console.log(results);
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const router = useRouter();
   return (
     <div>
       <Head>
-        <title>Search Page</title>
+        <title>{router.query.term} - Search page</title>
       </Head>
 
       {/** SEARCH HEADER */}
 
       <SearchHeader />
 
-      {/** SEARCH HEADER */}
+      {/** SEARCH RESULT */}
+
+      <SearchResult results={results} />
     </div>
   );
 }
